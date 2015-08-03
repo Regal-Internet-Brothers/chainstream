@@ -9,7 +9,14 @@ Import brl.stream
 Import brl.databuffer
 
 ' Classes:
-Class ChainStream Extends Stream
+Class ChainStream Extends SpecializedChainStream<Stream>
+	' Constructor(s):
+	Method New(Streams:Stream[], BigEndian:Bool=Default_BigEndian, CloseRights:Bool=True, Link:Int=0)
+		Super.New(Streams, BigEndian, CloseRights, Link)
+	End
+End
+
+Class SpecializedChainStream<StreamType> Extends Stream
 	' Constant variable(s):
 	
 	' Defaults:
@@ -18,7 +25,7 @@ Class ChainStream Extends Stream
 	Const Default_BigEndian:Bool = False
 	
 	' Constructor(s):
-	Method New(Streams:Stream[], BigEndian:Bool=Default_BigEndian, CloseRights:Bool=True, Link:Int=0)
+	Method New(Streams:StreamType[], BigEndian:Bool=Default_BigEndian, CloseRights:Bool=True, Link:Int=0)
 		Self.Chain = Streams
 		Self.Link = Link
 		
@@ -203,6 +210,12 @@ Class ChainStream Extends Stream
 		Return (ChainLength(Link))
 	End
 	
+	' A public "accessor" for the internal "chain".
+	' Mutation may result in undefined behavior; use at your own risk.
+	Method Links:StreamType[]() Property
+		Return Self.Chain
+	End
+	
 	' The number of links in the internal "chain".
 	Method LinkCount:Int() Property
 		Return Chain.Length
@@ -223,12 +236,12 @@ Class ChainStream Extends Stream
 	End
 	
 	' The current stream-link in the chain. (Use at your own risk)
-	Method CurrentLink:Stream() Property
+	Method CurrentLink:StreamType() Property
 		Return Chain[Link]
 	End
 	
 	' The final stream in the "chain". (Use at your own risk)
-	Method FinalLink:Stream() Property
+	Method FinalLink:StreamType() Property
 		Return Chain[FinalChainIndex]
 	End
 	
@@ -239,7 +252,7 @@ Class ChainStream Extends Stream
 	
 	' A "chain" of streams representing
 	' the data this stream delegates.
-	Field Chain:Stream[]
+	Field Chain:StreamType[]
 	
 	' The active element of 'Chain';
 	' the stream currently used for I/O.
