@@ -1,6 +1,6 @@
 # chainstream
 
-**This module was originally its own experimental module.** Today, it is a sub-module found in '[ioutil](https://github.com/Regal-Internet-Brothers/ioutil)'. Please use that module instead. This branch now contains a module/import proxy to '[ioutil](https://github.com/Regal-Internet-Brothers/ioutil)'. For the last proper version before this became a sub-module, visit the ["standalone" branch](github.com/Regal-Internet-Brothers/chainstream/tree/standalone).
+**This module was originally its own experimental module.** Today, it is a sub-module found in '[ioutil](https://github.com/Regal-Internet-Brothers/ioutil)'. Please use that module instead. This branch now contains a module/import proxy to '[ioutil](https://github.com/Regal-Internet-Brothers/ioutil)'. For the last proper version before this became a sub-module, visit the ["standalone" branch](https://github.com/Regal-Internet-Brothers/chainstream/tree/standalone).
 
 **ORIGINAL README**:
 
